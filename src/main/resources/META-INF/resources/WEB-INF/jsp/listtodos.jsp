@@ -1,12 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <link href="webjars/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet" >
-    <script src="webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
-    <script src="webjars/jquery/3.6.3/jquery.min.js"></script>
-    <title> List Todos Page</title>
-</head>
-<body>
+<%@ include file="common/headers.jspf"%>
+<%@ include file="common/navigation.jspf"%>
 <div class="container">
     <div>Welcome ${name}</div>
     <hr>
@@ -38,6 +31,4 @@
 
     <a href="add-todo" class="btn btn-success">Add Todo</a>
 </div>
-
-</body>
-</html>
+<%@ include file="common/footers.jspf"%>

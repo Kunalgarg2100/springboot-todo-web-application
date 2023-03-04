@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
-</head>
-<body>
+<%@ include file="common/headers.jspf"%>
+<%@ include file="common/navigation.jspf"%>
 <div class="container">
 Welcome to login page!
 <pre>${errorMsg}</pre>
-<form method="post">
-    Name : <input type="text" name="name">
-    Password : <input type="password" name="password">
+<form:form method="post">
+    <fieldset class="mb-3">
+        Name : <input type="text" name="name">
+    </fieldset>
+    <fieldset class="mb-3">
+        Password : <input type="password" name="password">
+    </fieldset>
     <input type="submit">
-</form>
+</form:form>
 </div>
-</body>
-</html>
+<%@ include file="common/footers.jspf"%>
