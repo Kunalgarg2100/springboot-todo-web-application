@@ -2,22 +2,29 @@ package com.example.springboottodowebapplication.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
+@Entity
+
 public class Todo {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String username;
-    @Size(min=10,message = "Enter atleast 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean done;
 
-    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
-        this.id = id;
+    public Todo() {
+    }
+
+    public Todo( String username, String description, LocalDate targetDate, boolean done) {
         this.username = username;
         this.description = description;
         this.targetDate = targetDate;

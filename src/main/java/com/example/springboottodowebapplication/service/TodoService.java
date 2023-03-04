@@ -1,36 +1,36 @@
 package com.example.springboottodowebapplication.service;
 
 import com.example.springboottodowebapplication.model.Todo;
+import com.example.springboottodowebapplication.repository.TodoJPARepository;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.stream;
 
 @Service
 public class TodoService {
     private static List<Todo> todos = new ArrayList<>();
+    private TodoJPARepository todoJPARepository;
 
     public static int getId(){
         return todos.size()+1;
     }
 
-    public TodoService() {
-        todos.add(new Todo(getId(), "KG", "Amazon", LocalDate.now().plusYears(1), false));
-        todos.add(new Todo(getId(), "KG", "Google", LocalDate.now().plusYears(1), false));
+    public TodoService(TodoJPARepository todoJPARepository) {
+        this.todoJPARepository = todoJPARepository;
     }
 
-    public void addTodo( String username, String description, LocalDate targetDate, boolean done  ){
-        Todo todo = new Todo(getId(),username, description, targetDate,done);
-        todos.add(todo);
+    public void addTodo( Todo todo  ){
+        System.out.println(todo);
+        todoJPARepository.save(todo);
     }
 
     public void deleteTodoById( int id ){
-        todos.removeIf(todo -> todo.getId() == id );
+        todoJPARepository.deleteById(id);
     }
 
     public static List<Todo> getTodos() {
@@ -42,15 +42,15 @@ public class TodoService {
     }
 
     public Todo findById(int id) {
-        return todos.stream().filter(todo -> todo.getId()==id).findFirst().get();
+        return todoJPARepository.findById(id).get();
     }
 
     public List<Todo> findByUsername(String username) {
-        return todos.stream().filter(todo -> todo.getUsername().equalsIgnoreCase(username)).toList();
+        return todoJPARepository.findByUsername(username);
     }
 
-    public void updateTodo(@Valid Todo todo) {
-        deleteTodoById(todo.getId());
-        todos.add(todo);
+    public void updateTodo(Todo todo) {
+        System.out.println(todo);
+        todoJPARepository.save(todo);
     }
 };
