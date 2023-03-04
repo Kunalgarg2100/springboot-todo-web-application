@@ -2,6 +2,7 @@
 <%@ include file="common/navigation.jspf"%>
 <div class="container">
     <h1>Add Todos</h1>
+<%--    https://stackoverflow.com/questions/3423262/what-is-modelattribute-in-spring-mvc?rq=1--%>
     <form:form method="post" modelAttribute="todo">
         <fieldset class="mb-3">
             <form:label path="description">Description</form:label>

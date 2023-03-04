@@ -60,6 +60,7 @@ public class TodoController {
         return "add-todo";
     }
 
+//    https://stackoverflow.com/questions/38988757/how-to-auto-generate-primary-key-id-properly-with-hibernate-inserting-records?rq=1
     @RequestMapping(value="add-todo", method = RequestMethod.POST)
     public String addNewTodo( @ModelAttribute("todo") Todo todo ){
         String username = getLoggedinUsername();
