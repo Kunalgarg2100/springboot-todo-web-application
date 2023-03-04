@@ -1,9 +1,10 @@
-package com.example.springboottodowebapplication.app.controllers;
+package com.example.springboottodowebapplication.controllers;
 
-import com.example.springboottodowebapplication.app.model.Todo;
-import com.example.springboottodowebapplication.app.service.TodoService;
+import com.example.springboottodowebapplication.model.Todo;
+import com.example.springboottodowebapplication.service.TodoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -27,7 +27,9 @@ public class TodoController {
 
     @RequestMapping("list-todos")
     public String listTodos(ModelMap model){
-        List<Todo> todos = todoService.getTodos();
+        String username = getLoggedinUsername();
+        System.out.println(username);
+        List<Todo> todos = todoService.findByUsername(username);
         model.addAttribute("todos", todos);
         return "listtodos";
     }
@@ -74,5 +76,10 @@ public class TodoController {
         LocalDate targetDate = todo.getTargetDate();
         todoService.addTodo(username , description, targetDate, false);
         return "redirect:list-todos";
+    }
+
+    private String getLoggedinUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 }

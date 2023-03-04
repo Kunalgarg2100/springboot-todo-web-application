@@ -1,5 +1,8 @@
-package com.example.springboottodowebapplication.app.model;
+package com.example.springboottodowebapplication.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import jakarta.validation.constraints.Size;

@@ -1,13 +1,15 @@
-package com.example.springboottodowebapplication.app.service;
+package com.example.springboottodowebapplication.service;
 
-import com.example.springboottodowebapplication.app.model.Todo;
+import com.example.springboottodowebapplication.model.Todo;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Arrays.stream;
 
 @Service
 public class TodoService {
@@ -41,6 +43,10 @@ public class TodoService {
 
     public Todo findById(int id) {
         return todos.stream().filter(todo -> todo.getId()==id).findFirst().get();
+    }
+
+    public List<Todo> findByUsername(String username) {
+        return todos.stream().filter(todo -> todo.getUsername().equalsIgnoreCase(username)).toList();
     }
 
     public void updateTodo(@Valid Todo todo) {
