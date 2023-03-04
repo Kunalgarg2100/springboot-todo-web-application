@@ -25,11 +25,10 @@ public class LoginFormController {
     public String gotoWelcomePage( @RequestParam String name, @RequestParam String password, ModelMap model) {
 
         if(authenticationService.authenticate(name,password)) {
-            model.put("name", name);
-            model.put("password", password);
+            model.addAttribute("name", name);
             return "welcome";
         }
-        model.put("errorMsg","Invalid credentials");
+        model.addAttribute("errorMsg","Invalid credentials");
         return "loginform";
     }
 }

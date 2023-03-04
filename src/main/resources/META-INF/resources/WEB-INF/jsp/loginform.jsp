@@ -5,6 +5,7 @@
     <title>Login Page</title>
 </head>
 <body>
+<div class="container">
 Welcome to login page!
 <pre>${errorMsg}</pre>
 <form method="post">
@@ -12,5 +13,6 @@ Welcome to login page!
     Password : <input type="password" name="password">
     <input type="submit">
 </form>
+</div>
 </body>
 </html>
